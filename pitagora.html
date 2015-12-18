@@ -30,8 +30,9 @@ canvas {
 
   <canvas id="pitagora" width="800" height="600"></canvas>
   <section id="controls">
+    triangle angle:<br>
     <input id="slider-triangle" type="range" min="0" max="100" step="1" value="75" oninput="change()"><br>
-    change radius:<br>
+    circle radius:<br>
     <input id="slider-r" type="range" min="0" max="300" step="1" value="100" oninput="change()"><br>
     radius: <span id="circleRadius"></span><br>
     diameter: <span id="circleDiameter"></span><br>
@@ -39,12 +40,29 @@ canvas {
     area: <span id="circleArea"></span>
   </section>
   <script>
-function selectCircle () {
-  var canvas = document.getElementById("");
-}
+function change () {
+  function drawCircle (radius) {
+    context.beginPath();
+    context.arc(centerX,centerY,radius,0,2*Math.PI);
+    context.stroke();
 
-function change (r) {
+    // draw radius
+    context.beginPath();
+    context.moveTo(centerX,centerY);
+    context.lineTo(centerX+radius,centerY);
+    context.stroke(); }
+
+  function drawTriangle (triX,triY) {
+    context.beginPath();
+    context.moveTo(centerX-r,centerY);
+    context.lineTo(centerX+r,centerY);
+    context.lineTo(triX,triY);
+    context.lineTo(centerX-r,centerY);
+    context.stroke(); }
+
   var canvas = document.getElementById("pitagora");
+  var centerX = canvas.width / 2;
+  var centerY = canvas.height / 2;
   var context = canvas.getContext("2d");
   var r = parseInt(document.getElementById("slider-r").value);
   var triangle = parseInt(document.getElementById("slider-triangle").value);
@@ -54,30 +72,14 @@ function change (r) {
 
   perimeter = perimeter.toFixed(2);
   area = area.toFixed(2);
-  context.clearRect(0, 0, 800, 600);
-
-  // draw circle
-  context.beginPath();
-  context.arc(400,300,r,0,2*Math.PI);
-  context.stroke();
+  context.clearRect(0, 0, canvas.width, canvas.height);
 
   angle = triangle / 100 * 2 * Math.PI
-  triangleX = 400 + r * Math.cos(angle);
-  triangleY = 300 + r * Math.sin(angle);
+  triangleX = centerX + r * Math.cos(angle);
+  triangleY = centerY + r * Math.sin(angle);
 
-  // draw radius
-  context.beginPath();
-  context.moveTo(400,300);
-  context.lineTo(400+r,300);
-  context.stroke();
-
-  // draw triangle
-  context.beginPath();
-  context.moveTo(400-r,300);
-  context.lineTo(400+r,300);
-  context.lineTo(triangleX,triangleY);
-  context.lineTo(400-r,300);
-  context.stroke();
+  drawCircle(r);
+  drawTriangle(triangleX,triangleY);
 
   document.getElementById("circleRadius").innerHTML = r;
   document.getElementById("circleDiameter").innerHTML = 2 * r;
