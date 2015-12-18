@@ -8,6 +8,9 @@ body {
   color: white;
   background: #344; }
 h1 { color: #223344; }
+section {
+  width: 800px;
+  margin: 0 auto; }
 canvas {
   display: block;
   width: 800px;
@@ -20,16 +23,38 @@ canvas {
 <body onload="changer(100)">
   <h1>Circle</h1>
   <canvas id="circle" width="800" height="600"></canvas>
-  <input id="slider-r" type="range" min="0" max="300" step="1" value="100" onchange="changer(this.value)">
-<script>
+  <section id="controls">
+    change radius:<br>
+    <input id="slider-r" type="range" min="0" max="300" step="1" value="100" oninput="changer(this.value)"><br>
+    radius: <span id="circleRadius"></span><br>
+    diameter: <span id="circleDiameter"></span><br>
+    circumference: <span id="circleCircumference"></span><br>
+    area: <span id="circleArea"></span>
+  </section>
+  <script>
 function changer (r) {
   var canvas = document.getElementById("circle");
   var context = canvas.getContext("2d");
-
+  r = parseInt(r);
+  var perimeter = 2 * r * Math.PI;
+  var area = r * r * Math.PI;
+  perimeter = perimeter.toFixed(2);
+  area = area.toFixed(2);
   context.clearRect(0, 0, 800, 600);
+
   context.beginPath();
   context.arc(400,300,r,0,2*Math.PI);
   context.stroke();
+
+  context.beginPath();
+  context.moveTo(400,300);
+  context.lineTo(400+r,300);
+  context.stroke();
+
+  document.getElementById("circleRadius").innerHTML = r;
+  document.getElementById("circleDiameter").innerHTML = 2 * r;
+  document.getElementById("circleCircumference").innerHTML = perimeter;
+  document.getElementById("circleArea").innerHTML = area;
 }
 </script>
 </body>
