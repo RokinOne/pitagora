@@ -1,0 +1,28 @@
+body {
+  width = 1000px;
+  margin: 0 auto;
+  color: white;
+  background: #344;
+}
+
+h1 { color: #223344; }
+
+section {
+  width: 800px;
+  margin: 0 auto;
+}
+
+canvas {
+  display: block;
+  width: 800px;
+  height: 600px;
+  margin: 20px auto 0;
+  color: blue;
+  background: white;
+}
+
+#controls section {
+  vertical-align: top;
+  display: inline-block;
+  width: 32%;
+}
