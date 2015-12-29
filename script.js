@@ -61,5 +61,8 @@ function change () {
   document.getElementById("triangleAngle").innerHTML = angle.toFixed(2);
   document.getElementById("rectangleA").innerHTML = rectSideA;
   document.getElementById("rectangleB").innerHTML = rectSideB;
+  document.getElementById("rectangleDiagonal").innerHTML = Math.sqrt(rectSideA*rectSideA + rectSideB*rectSideB).toFixed(2);
+  document.getElementById("rectanglePerimeter").innerHTML = rectSideA*2 + rectSideB*2;
+  document.getElementById("rectangleArea").innerHTML = rectSideA * rectSideB;
 }
 
