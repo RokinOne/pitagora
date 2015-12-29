@@ -30,6 +30,10 @@ canvas {
 
   <canvas id="pitagora" width="800" height="600"></canvas>
   <section id="controls">
+    rectangle a side:<br>
+    <input id="slider-rectangle-a" type="range" min="0" max="800" step="1" value="300" oninput="change()"><br>
+    rectangle b side:<br>
+    <input id="slider-rectangle-b" type="range" min="0" max="600" step="1" value="200" oninput="change()"><br>
     triangle angle:<br>
     <input id="slider-triangle" type="range" min="0" max="100" step="1" value="75" oninput="change()"><br>
     circle radius:<br>
@@ -41,6 +45,17 @@ canvas {
   </section>
   <script>
 function change () {
+  function drawRectangle (a,b) {
+    var sideH = a / 2;
+    var sideV = b / 2;
+    context.beginPath();
+    context.moveTo(centerX-sideH,centerY+sideV);
+    context.lineTo(centerX+sideH,centerY+sideV);
+    context.lineTo(centerX+sideH,centerY-sideV);
+    context.lineTo(centerX-sideH,centerY-sideV);
+    context.lineTo(centerX-sideH,centerY+sideV);
+    context.stroke(); }
+
   function drawCircle (radius) {
     context.beginPath();
     context.arc(centerX,centerY,radius,0,2*Math.PI);
@@ -69,6 +84,8 @@ function change () {
   var perimeter = 2 * r * Math.PI;
   var area = r * r * Math.PI;
   var angle, triangleX, triangleY;
+  var rectSideA = document.getElementById("slider-rectangle-a").value;
+  var rectSideB = document.getElementById("slider-rectangle-b").value;
 
   perimeter = perimeter.toFixed(2);
   area = area.toFixed(2);
@@ -80,6 +97,7 @@ function change () {
 
   drawCircle(r);
   drawTriangle(triangleX,triangleY);
+  drawRectangle(rectSideA,rectSideB);
 
   document.getElementById("circleRadius").innerHTML = r;
   document.getElementById("circleDiameter").innerHTML = 2 * r;
