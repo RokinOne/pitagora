@@ -19,7 +19,9 @@ function change () {
     context.beginPath();
     context.moveTo(centerX,centerY);
     context.lineTo(centerX+radius,centerY);
-    context.stroke(); }
+    context.stroke();
+    context.fillText("r",centerX+(radius/2),centerY-10);
+  }
 
   function drawTriangle (triX,triY) {
     context.beginPath();
