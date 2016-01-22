@@ -2,6 +2,7 @@ var canvas = document.getElementById("pitagora");
 var centerX = canvas.width / 2;
 var centerY = canvas.height / 2;
 var context = canvas.getContext("2d");
+var rectangleRatio;
 
 function drawRectangle (input) {
   function draw (a,b) {
@@ -18,19 +19,21 @@ function drawRectangle (input) {
 
   var rectSideA = document.getElementById("slider-rectangle-a").value;
   var rectSideB = document.getElementById("slider-rectangle-b").value;
-  var locked = document.getElementById("checkbox-rectangle").value;
-  var sideRatio = rectSideA / rectSideB;;
+  var locked = document.getElementById("checkbox-rectangle").checked;
 
-  if (locked == "on") {
+  if (input == 'l') { rectangleRatio = rectSideA / rectSideB; }
+  if (locked) {
     switch (input) {
-      case 'a': rectSideB = rectSideA / sideRatio; break;
-      case 'b': rectSideA = rectSideB * sideRatio; break;
+      case 'a': rectSideB = (rectSideA / rectangleRatio).toFixed(2); break;
+      case 'b': rectSideA = (rectSideB * rectangleRatio).toFixed(2); break;
     }
   }
 
   draw(rectSideA, rectSideB);
 
   // updating values
+  document.getElementById("slider-rectangle-a").value = rectSideA;
+  document.getElementById("slider-rectangle-b").value = rectSideB;
   document.getElementById("rectangleA").innerHTML = rectSideA;
   document.getElementById("rectangleB").innerHTML = rectSideB;
   document.getElementById("rectangleDiagonal").innerHTML = Math.sqrt(rectSideA*rectSideA + rectSideB*rectSideB).toFixed(2);
