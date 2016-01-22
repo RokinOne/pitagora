@@ -21,7 +21,12 @@ canvas {
   background: white;
 }
 
-#controls section {
+#shape-control {
+  display: block;
+  width: 100%;
+}
+
+.shape-controls {
   vertical-align: top;
   display: inline-block;
   width: 32%;

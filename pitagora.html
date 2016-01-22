@@ -2,7 +2,7 @@
 <html charset="utf-8">
 <title>Pitagora</title>
 <link rel="stylesheet" href="main.css">
-<body onload="change()">
+<body onload="drawRectangle()">
   <h1>Pitagora</h1>
   <!--<section>
     <button onclick="selectCircle()">Circle</button>
@@ -13,26 +13,31 @@
   <canvas id="pitagora" width="800" height="600"></canvas>
 
   <section id="controls">
-    <section>
+    <section id="shape-control">
+      <input type="button" onclick="drawRectangle()" value="rectangle">
+      <input type="button" onclick="drawTriangle()" value="triangle">
+      <input type="button" onclick="drawCircle()" value="circle">
+    </section>
+    <section class="shape-controls">
       rectangle<br>
-      <input id="checkbox-rectangle" type="checkbox"> locked<br> <!--TODO-->
+      <input id="checkbox-rectangle" type="checkbox" oninput="drawRectangle('l')"> locked<br>
       a side: <span id="rectangleA"></span><br>
-      <input id="slider-rectangle-a" type="range" min="0" max="800" step="1" value="300" oninput="change()"><br>
+      <input id="slider-rectangle-a" type="range" min="0" max="800" step="1" value="300" oninput="drawRectangle('a')"><br>
       b side: <span id="rectangleB"></span><br>
-      <input id="slider-rectangle-b" type="range" min="0" max="600" step="1" value="200" oninput="change()"><br>
+      <input id="slider-rectangle-b" type="range" min="0" max="600" step="1" value="200" oninput="drawRectangle('b')"><br>
       diagonal: <span id="rectangleDiagonal"></span><br>
       perimeter: <span id="rectanglePerimeter"></span><br>
       area: <span id="rectangleArea"></span>
     </section>
-    <section>
+    <section class="shape-controls">
       triangle<br>
       angle: <span id="triangleAngle"></span><br>
-      <input id="slider-triangle" type="range" min="0" max="100" step="1" value="75" oninput="change()"><br>
+      <input id="slider-triangle" type="range" min="0" max="100" step="1" value="75" oninput="drawTriangle()"><br>
     </section>
-    <section>
+    <section class="shape-controls">
       circle<br>
       radius: <span id="circleRadius"></span><br>
-      <input id="slider-r" type="range" min="0" max="300" step="1" value="100" oninput="change()"><br>
+      <input id="slider-r" type="range" min="0" max="300" step="1" value="100" oninput="drawCircle()"><br>
       diameter: <span id="circleDiameter"></span><br>
       circumference: <span id="circleCircumference"></span><br>
       area: <span id="circleArea"></span>
