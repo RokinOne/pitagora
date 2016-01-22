@@ -45,22 +45,24 @@ function drawTriangle () {
   function draw (triX,triY) {
     context.clearRect(0, 0, canvas.width, canvas.height);
     context.beginPath();
-    context.moveTo(centerX-r,centerY);
-    context.lineTo(centerX+r,centerY);
+    context.moveTo(centerX-c,centerY);
+    context.lineTo(centerX+c,centerY);
     context.lineTo(triX,triY);
-    context.lineTo(centerX-r,centerY);
+    context.lineTo(centerX-c,centerY);
     context.stroke(); }
 
   var triangle = parseInt(document.getElementById("slider-triangle").value);
+  var c = document.getElementById("slider-c").value;
   var angle, triangleX, triangleY;
-  var r = 100; // hipotenuza
 
+  c= c / 2;
   angle = triangle / 100 * 2 * Math.PI
-  triangleX = centerX + r * Math.cos(angle);
-  triangleY = centerY + r * Math.sin(angle);
+  triangleX = centerX + c * Math.cos(angle);
+  triangleY = centerY + c * Math.sin(angle);
   draw(triangleX,triangleY);
 
   document.getElementById("triangleAngle").innerHTML = angle.toFixed(2);
+  document.getElementById("triangleC").innerHTML = c * 2;
 }
 
 function drawCircle () {
